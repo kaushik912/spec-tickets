@@ -1,0 +1,21 @@
+id: TICKET-003
+slug: toggle-delete
+title: Complete and delete todos
+problem: |
+  Users cannot mark todos done or remove them.
+goal: |
+  Toggle completion and delete individual todos, end to end.
+non_goals:
+  - Create/list (TICKET-002)
+  - Filtering and clear completed (TICKET-004)
+acceptance:
+  - "PATCH /api/todos/{id} {completed:true|false} returns 200 with updated Todo"
+  - "PATCH unknown id returns 404; missing completed returns 400"
+  - "DELETE /api/todos/{id} returns 204 and todo no longer listed; unknown id returns 404"
+  - "UI checkbox toggles completed and shows strikethrough styling"
+  - "UI delete button removes the item; items-left count updates"
+  - "Service unit tests and RestAssured tests cover the above"
+stack_notes: Endpoints per docs/api-contract.md PATCH and DELETE /{id}. Reuse Todo entity/service from TICKET-002.
+testing_seam: layered
+api_docs: true
+auto_approve: true

@@ -1,0 +1,21 @@
+id: TICKET-004
+slug: filter-clear
+title: Filter and clear completed
+problem: |
+  Users cannot narrow the list by state or bulk-remove finished todos.
+goal: |
+  Filter all/active/completed and clear completed, end to end.
+non_goals:
+  - Create/list (TICKET-002)
+  - Single toggle/delete (TICKET-003)
+acceptance:
+  - "GET /api/todos?filter=active returns only completed=false; filter=completed only completed=true; filter=all or omitted returns all"
+  - "GET with invalid filter returns 400"
+  - "DELETE /api/todos/completed returns 200 {deleted:n} and removes only completed todos; n=0 when none"
+  - "UI has All/Active/Completed links; selected one highlighted"
+  - "UI 'Clear completed' button shown only when completed todos exist; click removes them"
+  - "Service unit tests and RestAssured tests cover the above"
+stack_notes: Per docs/api-contract.md GET filter and DELETE /api/todos/completed. Route DELETE /completed must not clash with /{id}. Needs only TICKET-002 code; tests create completed state via PATCH-free fixtures (repository) so it stays independent of TICKET-003.
+testing_seam: layered
+api_docs: true
+auto_approve: true

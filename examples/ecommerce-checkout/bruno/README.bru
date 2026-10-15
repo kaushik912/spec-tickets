@@ -1,0 +1,32 @@
+meta {
+  name: README
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/carts/__readme__
+  body: none
+  auth: none
+}
+
+docs {
+  Not a real request - Bruno collections need at least a placeholder if you want a
+  visible root doc entry. Ignore / delete this file; it exists only to hold the notes
+  below.
+
+  ## Scenario coverage map
+  - cart/                                CartController: create/add-item/get, incl. 404 + validation
+  - checkout/happy-and-idempotency/      requires app started with `--payment.failure-rate=0.0`
+  - checkout/auth-failure/               requires `--payment.auth-failure-rate=1.0`
+  - checkout/capture-failure/            requires `--payment.auth-failure-rate=0.0 --payment.capture-failure-rate=1.0`
+  - checkout/auth-fail-retry-not-deduped/  requires the DEFAULT app (no override, failure-rate=0.3) - inherently non-deterministic, may need re-runs to catch the interesting branch (see docs in 01/03/04)
+  - orders/                              GET /orders/{id} not-found + malformed-id (no payment dependency)
+  - cancel/happy-and-idempotency/        requires `--payment.failure-rate=0.0` (refund() itself never fails)
+  - cancel/non-cancellable-state/        requires `--payment.auth-failure-rate=0.0 --payment.capture-failure-rate=1.0`
+
+  Payment outcomes are controlled only via server startup properties (see MANUAL_TEST.md) -
+  there is no per-request way to force AUTH/CAPTURE success or failure, so folders that touch
+  payment must be run against an app instance started with matching flags. Run
+  `bru run <folder> --env local` per folder rather than the whole collection in one pass.
+}

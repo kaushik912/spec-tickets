@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "openapi-mcp": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/openapi-mcp",
+        "run",
+        "openapi-mcp"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+id: TICKET-002
+slug: add-list-todos
+title: Add and list todos
+problem: |
+  Users cannot create or see todos.
+goal: |
+  Create a todo and see the list, end to end (API + UI).
+non_goals:
+  - Toggle/delete (TICKET-003)
+  - Filtering and clear completed (TICKET-004)
+acceptance:
+  - "POST /api/todos with valid title returns 201, Todo with completed=false and Location header"
+  - "POST with blank, missing, or >200-char title returns 400 with error shape"
+  - "Title is trimmed before saving"
+  - "GET /api/todos returns all todos ordered by id ascending (empty array when none)"
+  - "UI input: Enter adds a todo, clears input, shows it in the list; blank input adds nothing"
+  - "UI shows count of items left"
+  - "Service unit tests and RestAssured tests cover the above"
+stack_notes: Todo entity and endpoints per docs/api-contract.md (POST, GET without filter param handling beyond default). Entity in docs/spec.md "Entities". Annotate controller with @Tag/@Operation.
+testing_seam: layered
+api_docs: true
+auto_approve: true

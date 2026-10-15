@@ -1,0 +1,20 @@
+id: TICKET-001
+slug: scaffold
+title: Contract + scaffold
+problem: |
+  No project structure exists; backend and frontend tickets need a shared layout, test runners and contract.
+goal: |
+  Runnable Spring Boot backend and React/Vite frontend skeletons with test runners, Swagger, CI stub and the API contract in place.
+non_goals:
+  - Any todo endpoint or UI behavior (TICKET-002/003/004)
+acceptance:
+  - "`backend/` Spring Boot app starts; `GET /v3/api-docs` returns 200 and `/swagger-ui.html` loads"
+  - "App context test passes via `./mvnw test` (or gradle equivalent)"
+  - "`frontend/` Vite app builds (`npm run build`) and `npm test` (Vitest) runs a smoke test green"
+  - "Vite dev server proxies `/api` to backend port"
+  - "`docs/api-contract.md` present and unchanged in meaning; README documents run/test commands"
+  - "CI stub workflow runs backend and frontend tests"
+stack_notes: Stack in docs/spec.md "Stack"; use `spring` CLI if installed. H2 + JPA + springdoc deps. Contract in docs/api-contract.md. Check configured backend port for proxy.
+testing_seam: layered
+api_docs: true
+auto_approve: true

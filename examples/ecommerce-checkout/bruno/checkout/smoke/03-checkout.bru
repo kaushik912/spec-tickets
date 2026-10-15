@@ -1,0 +1,32 @@
+meta {
+  name: Checkout - happy path (AUTH + CAPTURE succeed)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/carts/{{cartId}}/checkout
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.status === 200) {
+    bru.setVar("orderId", res.body.id);
+  }
+}
+
+tests {
+  test("status 200", function () {
+    expect(res.status).to.equal(200);
+  });
+  test("order is CONFIRMED", function () {
+    expect(res.body.status).to.equal("CONFIRMED");
+    expect(res.body.cartId).to.equal(bru.getVar("cartId"));
+  });
+}
+
+docs {
+  CI smoke test step 3/3. Requires --payment.failure-rate=0.0 (see 00-folder-requirements.bru
+  in ../happy-and-idempotency for the manual-run equivalent).
+}

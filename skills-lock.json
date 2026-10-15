@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "skills": {
+    "e2e-grill": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "2c42385c6e338b742e30e9830d16c812332668e01ee4d5fb069f6a638dd9268a"
+    },
+    "e2e-implement": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "7c40af99d69acfb6755a5b722e54f3645bd316a7d2ffe3b1951812c0ee3141f6"
+    },
+    "next-ticket": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "fbb1a3af726ad56f3839351870147ac705ce7c1d9fc1cd86589267de504d3d98"
+    },
+    "spec": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "b2c3ea2fb98b373614738206d4d4be9b9386eed370fbe31509834c91e29454ba"
+    },
+    "ticket-fix": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "9a3b0feaa2de42dafcf7df02063d59dee75bad5631dcc31e93ed017d5177362c"
+    },
+    "ticket-spec": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "d0ea18516a8b44bcc47959b4d9df117b1c4db042b6865d4f84f39f5e6deb6e03"
+    },
+    "ticket-split": {
+      "source": "../my-claude-lib/skills",
+      "sourceType": "local",
+      "computedHash": "d0156e1baa73b192c89913f8e09f02ea671c1514f3083bf710945ad4ada572c8"
+    }
+  }
+}

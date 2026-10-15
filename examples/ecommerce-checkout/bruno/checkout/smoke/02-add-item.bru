@@ -1,0 +1,33 @@
+meta {
+  name: Add Item
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/carts/{{cartId}}/items
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "productName": "Widget",
+    "unitPrice": 9.99,
+    "quantity": 1
+  }
+}
+
+tests {
+  test("status 201", function () {
+    expect(res.status).to.equal(201);
+  });
+}
+
+docs {
+  CI smoke test step 2/3. Run after 01-create-cart.bru.
+}

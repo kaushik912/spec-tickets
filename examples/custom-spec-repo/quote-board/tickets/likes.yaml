@@ -1,0 +1,24 @@
+id: TICKET-001
+slug: likes
+title: Like and unlike quotes
+problem: |
+  Quotes have a likes counter but no way to change it — the API can only read
+  the seeded value of 0.
+goal: |
+  Let a client like or unlike a quote by id, with the count reflected on
+  subsequent reads.
+non_goals:
+  - Per-user like tracking (no auth, no duplicate-like prevention)
+  - Persisting likes to a database (in-memory is fine, same as the rest of the app)
+acceptance:
+  - "POST /quotes/<id>/like increments that quote's likes by 1, returns 200 and the updated quote"
+  - "POST /quotes/<id>/unlike decrements likes by 1, floored at 0, returns 200 and the updated quote"
+  - "Both routes return 404 for an unknown quote id"
+  - "GET /quotes/<id> reflects the updated likes count after a like/unlike"
+stack_notes: |
+  Flask app in quote-board/app.py, in-memory `quotes` list, no DB. Tests in
+  quote-board/tests/test_app.py using the Flask test client (see existing
+  tests for the pattern). Run with `pytest` from quote-board/.
+testing_seam: single
+api_docs: false
+auto_approve: true

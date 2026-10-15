@@ -1,0 +1,9 @@
+.venv/
+target/
+node_modules/
+__pycache__/
+.pytest_cache/
+*.db
+.claude/settings.local.json
+.claude/worktrees/
+.agents/worktrees/
